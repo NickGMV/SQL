@@ -4,6 +4,7 @@ import psycopg2 as psy
 # Import Pandas to deal with  our query outputs
 import pandas as pd
 
+pd.options.display.html.use_mathjax = False
 
 # Connect to an existing database store the connection in a variable
 conn = psy.connect(host = "db.bit.io",
