@@ -1,0 +1,15 @@
+# Import psycopg to connect to bit.io (postgres SQL)
+import psycopg2 as psy
+
+# Import Pandas to deal with  our query outputs
+import pandas as pd
+
+
+# Connect to an existing database store the connection in a variable
+conn = psy.connect(host = "db.bit.io",
+                   database = "alastairtyson/multiverse_music_streaming",
+                   user = "nickGMV", 
+                   password = "v2_3vHgL_g5eaUawDqhhZBqpSAWT7bcs")
+
+
+cur = conn.cursor()
