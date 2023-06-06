@@ -1,0 +1,45 @@
+# Import psycopg to connect to bit.io (postgres SQL)
+import psycopg2 as psy
+
+# display allows nicer formatting of SQL outputs
+from IPython.core.display import HTML
+
+# Import Pandas to deal with  our query outputs
+import pandas as pd
+
+# Connect to an existing database store the connection in a variable
+conn = psy.connect(host = "db.kyzffucarkgbgjkpstio.supabase.co",
+                   database = "postgres",
+                   user = "postgres", 
+                   password = "!multiverse-sql")
+
+# create data cursor
+cur = conn.cursor()
+
+# function to run queries
+def run_query(x,cur,conn,excel):
+    try:
+        data = cur.execute(x)
+        result = pd.read_sql_query(x, conn)
+        if excel:
+            result.to_csv(f'./{excel}')
+        display(HTML(f"<div style = 'margin:15px;'>{result.to_html()}</div>"))
+        print('Query completed')
+       
+        
+    except Exception as ex:
+        message = f"""<h4 style = "color:red"> An exception of type {str(type(ex).__name__)} occurred </h4>
+        <p>additional info was... </p>
+        """
+        display(HTML(message))
+        try:
+            for arg in ex.args:
+                print(arg)
+        except: 
+            print('no additional info')
+        conn.rollback()
+        
+    
+        
+ 
+    
