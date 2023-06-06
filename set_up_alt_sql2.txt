@@ -39,7 +39,15 @@ def run_query(x,cur,conn,excel):
             print('no additional info')
         conn.rollback()
         
-    
+def ERD():
+    return HTML("""
+    <script>
+    var options = `fullscreen=No,width=${screen.height/2},height=${screen.height/2}`
+    //window.alert(options)
+    var a = window.open("https://raw.githubusercontent.com/NickGMV/SQL/main/ERD%20supabase.png","name",specs = options);
+    a.focus();
+    </script>
+    """) 
         
  
     
